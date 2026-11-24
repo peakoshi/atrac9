@@ -409,8 +409,7 @@ impl Encoder {
                     return;
                 };
                 let mut length = *extra;
-                for channel in 0..self.channels() {
-                    let mode = self.bex[channel].0;
+                for &(mode, _) in &self.bex[..self.channels()] {
                     length += BEX_DATA_LENGTHS[mode][band][..BEX_VALUE_COUNTS[mode][band]]
                         .iter()
                         .sum::<usize>();
